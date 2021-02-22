@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "canvar">
+        {% if session.allowed_members == 1 %}
+    <div class="holder">
+        <div class="card">
+          <div class="card__text">
+            {{session.Member_ID}}
+            <br />
+            <small>{{session.user.name}}</small>
+            <h1>Вы успешно зарегестированы</h1>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="holder">
+        <div class="card">
+          <div class="card__text">
+            {{session.Member_ID}}
+            <br />
+            <small>Вы не являетесь работником</small>
+          </div>
+          <svg>Вы не являетесь работником</svg>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    
+   
+    
+   <script>
+       const canvas = document.getElementById('canvar')
+       function doit(){
+        fetch('/getl/')
+       .then(response => response.json())
+       .then(user => console.log(user))
+
+       }
+       doit()
+    //    setInterval(doit,1000)
+       
+   </script>
+</body>
+</html>
